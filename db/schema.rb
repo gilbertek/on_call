@@ -11,9 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522185340) do
+ActiveRecord::Schema.define(version: 20160723213417) do
 
   create_table "doctors", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "speciality_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
@@ -25,14 +38,8 @@ ActiveRecord::Schema.define(version: 20160522185340) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "patients", force: :cascade do |t|
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
+  create_table "specialities", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
