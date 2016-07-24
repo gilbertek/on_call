@@ -12,6 +12,7 @@
   <tbody>
     <% @specialities.each do |speciality| %>
       <tr>
+        <td><%= link_to speciality.name, speciality %></td>
         <td><%= link_to 'Show', speciality %></td>
         <td><%= link_to 'Edit', edit_speciality_path(speciality) %></td>
         <td><%= link_to 'Destroy', speciality, method: :delete, data: { confirm: 'Are you sure?' } %></td>
