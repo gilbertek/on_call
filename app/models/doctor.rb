@@ -1,7 +1,7 @@
 class Doctor < ActiveRecord::Base
   include PersonConcern
 
-  has_one  :speciality, inverse_of: :doctor
+  belongs_to  :specialty
 
   def name
     "Dr. #{super}"

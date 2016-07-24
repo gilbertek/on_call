@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
+  before_action :load_specialities, only: %w(new edit update)
 
   # GET /doctors
   # GET /doctors.json
@@ -62,6 +63,10 @@ class DoctorsController < ApplicationController
   end
 
   private
+    def load_specialities
+      @specialties = Specialty::all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_doctor
       @doctor = Doctor.find(params[:id])
@@ -69,6 +74,6 @@ class DoctorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_params
-      params.require(:doctor).permit(:email, :first_name, :last_name, :street, :city, :state, :zip)
+      params.require(:doctor).permit(:email, :first_name, :last_name, :street, :city, :state, :zip, :specialty_id)
     end
 end

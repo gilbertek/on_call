@@ -8,6 +8,6 @@ FactoryGirl.define do
     city 'New York'
     state 'NY'
     zip '10012'
-    speciality_id 1
+    specialty_id 1
   end
 end

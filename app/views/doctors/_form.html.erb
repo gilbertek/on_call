@@ -11,5 +11,9 @@
     </div>
   <% end %>
 
+  <%= f.label :specialty %><br>
+
+  <%= f.collection_select(:specialty_id, @specialties, :id, :name, {:prompt => false}) %>
+
   <%= render partial: "shared/person_form", locals: { form: f, person: @doctor } %>
 <% end %>
