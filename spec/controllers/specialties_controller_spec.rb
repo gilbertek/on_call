@@ -78,7 +78,7 @@ describe SpecialtiesController, type: :controller do
         specialty = Specialty.create! valid_attributes
         put :update, {:id => specialty.to_param, :specialty => new_attributes}
         specialty.reload
-        skip("Add assertions for updated state")
+        expect(specialty.name).to eq(new_attributes[:name])
       end
 
       it "assigns the requested specialty as @specialty" do
