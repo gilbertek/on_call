@@ -1,0 +1,7 @@
+Dear <%= @patient.name %>,
+
+You have a new appointment scheduled with <%=  @doctor.name %>.
+
+Date: <%= display_date_format(@appointment.start_at) %>
+
+Be sure to arrive 15 minutes prior to scheduled appointment time.

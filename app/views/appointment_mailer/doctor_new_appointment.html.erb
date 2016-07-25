@@ -1,0 +1,5 @@
+Dear <%= @doctor.name %>,
+
+You have a new appointment scheduled with <%=  @patient.name %>.
+
+Date: <%= display_date_format(@appointment.start_at) %>
