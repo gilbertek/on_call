@@ -3,18 +3,17 @@ class AppointmentMailer < ApplicationMailer
 
   def patient_new_appointment(appointment)
     @appointment = appointment
-    set_doctor_and_patient
-    mail(to: @patient.email, subject: "Your upcoming appointment with #{@doctor.name}")
+    @patient     = @appointment.patient
+    @doctor      = @appointment.doctor
+
+    mail(to: @patient.email, subject: "Your appointment with #{@doctor.name} is confirmed")
   end
 
   def doctor_new_appointment(appointment)
     @appointment = appointment
-    set_doctor_and_patient
-    mail(to: @doctor.email, subject: "New patient appointment")
-  end
+    @patient     = @appointment.patient
+    @doctor      = @appointment.doctor
 
-  def set_doctor_and_patient
-    @patient = @appointment.patient
-    @doctor = @appointment.doctor
+    mail(to: @doctor.email, subject: "New appointment")
   end
 end
