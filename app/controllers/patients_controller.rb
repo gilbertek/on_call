@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :load_ailments, only: %w(new edit)
 
   # GET /patients
   # GET /patients.json
@@ -67,8 +68,12 @@ class PatientsController < ApplicationController
       @patient = Patient.find(params[:id])
     end
 
+    def load_ailments
+      @ailments = Ailment.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:email, :first_name, :last_name, :street, :city, :state, :zip)
+      params.require(:patient).permit(:email, :first_name, :last_name, :street, :city, :state, :zip, {:ailment_ids => []})
     end
 end

@@ -50,6 +50,7 @@ class AilmentsController < ApplicationController
   end
 
   private
+
     def set_ailment
       @ailment = Ailment.find(params[:id])
     end

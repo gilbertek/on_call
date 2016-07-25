@@ -11,5 +11,14 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.collection_check_boxes :ailment_ids, @ailments, :id, :name do |a| %>
+      <div class="collection-check-box">
+        <%= a.check_box %>
+        <%= a.label %>
+      </div>
+    <% end %>
+  </div>
+
   <%= render partial: "shared/person_form", locals: { form: f, person: @patient } %>
 <% end %>
