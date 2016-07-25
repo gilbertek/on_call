@@ -9,6 +9,6 @@ class Patient < ActiveRecord::Base
   accepts_nested_attributes_for :ailments, allow_destroy: true, reject_if: :all_blank
 
   def address
-    [street, city, state, country].compact.join(', ')
+    [street, city, state, zip, country].compact.join(', ')
   end
 end

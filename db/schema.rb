@@ -47,11 +47,12 @@ ActiveRecord::Schema.define(version: 20160725193758) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "specialty_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "country",      default: "US"
   end
 
   add_index "doctors", ["specialty_id"], name: "index_doctors_on_specialty_id"
@@ -64,10 +65,11 @@ ActiveRecord::Schema.define(version: 20160725193758) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "country",    default: "US"
   end
 
   create_table "specialties", force: :cascade do |t|

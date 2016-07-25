@@ -9,6 +9,6 @@ class Doctor < ActiveRecord::Base
   end
 
   def address
-    [street, city, state, country].compact.join(', ')
+    [street, city, state, zip, country].compact.join(', ')
   end
 end
