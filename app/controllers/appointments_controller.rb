@@ -9,22 +9,20 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = Appointment.new
   end
 
   def edit
   end
 
   def create
+    @patient = Patient.find(params[:patient_id])
     @appointment = Appointment.new(appointment_params)
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
+        format.html { redirect_to @patient, notice: 'Appointment was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        format.html { redirect_to @patient, notice: 'Unable to create appointment.' }
       end
     end
   end
@@ -55,6 +53,16 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:belongs_to, :belongs_to, :start_at)
+      params.require(:appointment).permit(:patient_id, :doctor_id, :start_at)
+    end
+
+    def normalize_start_time
+      year   = appointment_params[:"start_at(1i)"].to_i
+      month  = appointment_params[:"start_at(2i)"].to_i
+      day    = appointment_params[:"start_at(3i)"].to_i
+      hour   = appointment_params[:"start_at(4i)"].to_i
+      minute = appointment_params[:"start_at(5i)"].to_i
+
+      Time.zone.parse("#{year}-#{month}-#{day} #{hour}:#{minute}")
     end
 end

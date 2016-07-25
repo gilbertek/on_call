@@ -6,5 +6,9 @@
 
 <%= render partial: "shared/show_person", locals: { person: @patient} %>
 
+<div id="new-appointment">
+  <%= render partial: 'appointments/form', locals: {patient: @patient, appointment: Appointment.new } %>
+</div>
+
 <%= link_to 'Edit', edit_patient_path(@patient) %> |
 <%= link_to 'Back', patients_path %>

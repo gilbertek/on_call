@@ -11,6 +11,8 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    @appointment = Appointment.new
+    @doctors = @patient.required_specialists.near(@patient.address, 10)
   end
 
   # GET /patients/new

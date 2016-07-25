@@ -8,6 +8,10 @@ class Doctor < ActiveRecord::Base
     "Dr. #{super}"
   end
 
+  def name_and_specialty
+    "#{name} (#{specialty.name})"
+  end
+
   def address
     [street, city, state, zip, country].compact.join(', ')
   end

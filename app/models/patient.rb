@@ -11,4 +11,16 @@ class Patient < ActiveRecord::Base
   def address
     [street, city, state, zip, country].compact.join(', ')
   end
+
+  def required_specialists
+    Doctor.joins(:specialty)
+          .where('specialties.description LIKE :diseases', diseases: disease_names.inject([]) { |arr, n| arr << "%#{n}%" }.join("','"))
+  end
+
+  private
+
+  def disease_names
+    Patient.first.ailments.map(&:name).flatten
+  end
 end
+
