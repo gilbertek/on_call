@@ -20,6 +20,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
+        send_new_appointment_emails
         format.html { redirect_to @patient, notice: 'Appointment was successfully created.' }
       else
         format.html { redirect_to @patient, notice: 'Unable to create appointment.' }
@@ -64,5 +65,11 @@ class AppointmentsController < ApplicationController
       minute = appointment_params[:"start_at(5i)"].to_i
 
       Time.zone.parse("#{year}-#{month}-#{day} #{hour}:#{minute}")
+    end
+
+    def send_new_appointment_emails
+       %w(patient doctor).each do |participant|
+        AppointmentMailer.send("#{participant}_new_appointment", @appointment).deliver_now
+      end
     end
 end
