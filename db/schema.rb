@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725181551) do
+ActiveRecord::Schema.define(version: 20160725193758) do
 
   create_table "ailments", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160725181551) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "specialty_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "doctors", ["specialty_id"], name: "index_doctors_on_specialty_id"
@@ -64,6 +66,8 @@ ActiveRecord::Schema.define(version: 20160725181551) do
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "specialties", force: :cascade do |t|
