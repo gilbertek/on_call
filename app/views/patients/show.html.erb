@@ -6,7 +6,37 @@
 
 <%= render partial: "shared/show_person", locals: { person: @patient} %>
 
+<br>
+<br>
+<div id="appointment-list">
+  <strong>Appointment List</strong>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Time</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody id="patient-appointments">
+      <% @patient.appointments.each do |apt| %>
+        <tr>
+          <td><%= apt.doctor.name_and_specialty %>
+          <td><%= display_date_format(apt.start_at) %></td>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<br>
+
 <div id="new-appointment">
+  <strong>Request new appointment</strong>
+
   <%= render partial: 'appointments/form', locals: {patient: @patient, appointment: Appointment.new } %>
 </div>
 

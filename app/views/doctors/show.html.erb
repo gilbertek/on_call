@@ -6,5 +6,32 @@
 
 <%= render partial: "shared/show_person", locals: {person: @doctor} %>
 
+
+<br>
+<br>
+<div id="appointment-list">
+  <strong>Appointment List</strong>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Time</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody id="patient-appointments">
+      <% @doctor.appointments.each do |apt| %>
+        <tr>
+          <td><%= apt.doctor.name_and_specialty %>
+          <td><%= display_date_format(apt.start_at) %></td>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
 <%= link_to 'Edit', edit_doctor_path(@doctor) %> |
 <%= link_to 'Back', doctors_path %>
