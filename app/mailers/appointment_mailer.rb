@@ -14,6 +14,6 @@ class AppointmentMailer < ApplicationMailer
     @patient     = @appointment.patient
     @doctor      = @appointment.doctor
 
-    mail(to: @doctor.email, subject: "New appointment")
+    mail(to: @doctor.email, subject: "New patient appointment")
   end
 end
