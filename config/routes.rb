@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :ailments
 
   resources :patients do
-    resources :appointments, only: %w(create new show destroy)
+    resources :appointments, only: %w(create new show)
   end
 
   resources :doctors do

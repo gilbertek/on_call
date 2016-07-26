@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :ailment do
-    name "MyString"
-    description "MyString"
+    name "broken bones"
+    description "broken bones"
   end
 end

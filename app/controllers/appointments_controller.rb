@@ -41,9 +41,10 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    @patient = Patient.find(params[:patient_id])
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to @patient, notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
